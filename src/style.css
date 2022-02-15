@@ -11,24 +11,110 @@ body {
   display: flex;
   cursor: pointer;
 }
-.projectInterface {
-  display: grid;
-  grid-template-columns: repeat(1fr, 8);
-}
+
 .disposable {
+  position: fixed;
   display: grid;
   grid-template-rows: 1fr;
-  width: 40%;
+  min-width: 40%;
+  max-width: 60%;
   gap: 8px;
-  margin-left: 3%;
   background: #ff5252;
   border-radius: 8px;
-  /* border: 4px solid #ff5252; */
   padding: 20px;
+  box-shadow: 0px 0px 6px 0px;
+  top: 35%;
+  left: 30%;
 }
 .disposable button {
-  width: 20%;
+  width: 50%;
 }
-.disposable input {
-  /* border: solid black 2px; */
+.todoContainers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 10%;
+}
+.dataDiv {
+  display: flex;
+  flex-direction: column;
+  min-width: 82%;
+  margin: 10px;
+  background-color: rgba(255, 255, 255);
+  border-radius: 12px;
+  padding: 10px;
+  padding-right: 30px;
+  box-shadow: 0px 0px 6px 0px;
+  overflow-wrap: break-word;
+  position: relative;
+}
+.newTodo img {
+  box-shadow: 0px 0px 6px 0px;
+  border-radius: 50%;
+}
+.deleteProject {
+  background-color: white;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 4%;
+  padding: 0;
+  margin: 0;
+}
+.deleteProject:after {
+  color: #ff5252;
+  font-size: 2.2rem;
+  content: "\00d7"; /* This will render the 'X' */
+}
+.deleteProject:hover {
+  scale: 1.2;
+}
+.expandProject:after {
+  /* color: #ff5252; */
+  color: rgb(46, 204, 113);
+  font-size: 2.2rem;
+  content: "\002B"; /* This will render the '+' */
+}
+.expandProject {
+  background-color: white;
+  background: none;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  right: 4%;
+  padding: 0;
+  margin: 0;
+}
+.expandProject:hover {
+  scale: 1.2;
+}
+.submit {
+  border: none;
+  border-radius: 12px;
+  margin: 0 auto;
+}
+input {
+  border: none;
+  border-radius: 12px;
+  padding: 8px;
+}
+.prioritySelectList {
+  width: 40%;
+  border: none;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 4px;
+}
+.expanded {
+  text-align: center;
+  position: absolute;
+  min-height: 60vh;
+  width: 30vw;
+  top: 10%;
+  margin: 0 auto 0 auto;
+  padding: 0;
+  display: flex;
+  font-size: 3.5rem;
+  line-height: 2;
+  z-index: 999;
 }

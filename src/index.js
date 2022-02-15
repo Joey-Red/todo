@@ -34,11 +34,19 @@ newTodoButton.addEventListener("click", function(){
   disposableInterface.append(description);
 
   let dueDate = document.createElement('input');
-  dueDate.placeholder="Due date";
+  dueDate.setAttribute("type","date");
+  dueDate.setAttribute("value", "2022-02-15");
   disposableInterface.append(dueDate);
 
-  let priority = document.createElement('input');
-  priority.placeholder="Priority";
+  const prioArray = ['Priority','!','!!','!!!'];
+  let priority = document.createElement('select');
+  priority.classList.add('prioritySelectList');
+  for (var i = 0; i < prioArray.length; i++){
+    var option = document.createElement("option");
+    option.value = prioArray[i];
+    option.text = prioArray[i];
+    priority.appendChild(option);
+  }
   disposableInterface.append(priority);
 
   let submitBtn = document.createElement('button');
@@ -49,13 +57,33 @@ newTodoButton.addEventListener("click", function(){
   let newTodo = new Todos(title, description, dueDate, priority);
 
   submitBtn.addEventListener("click", function(){
-    let location = document.querySelector(".projectInterface");
-    location.append(`Title: ${newTodo.title.value}, Description: ${newTodo.description.value}, Due Date: ${newTodo.dueDate.value}, Priority: ${newTodo.priority.value}`);
+    let location = document.querySelector(".todoContainers");
+    let dataDiv = document.createElement('div');
+    if (priority.value == 'Priority' || priority == '!'){
+    dataDiv.style.background="white";
+  } else if (priority.value == '!!'){
+    dataDiv.style.background="rgb(255, 255, 159)";
+  } else if (priority.value == '!!!'){
+    dataDiv.style.background="rgb(246, 71, 71)";
+  }
+    dataDiv.classList.add('dataDiv');
+    let deleteButton = document.createElement("button");
+    deleteButton.classList.add('deleteProject');
+    let expandButton = document.createElement("button");
+    expandButton.classList.add('expandProject');
+    dataDiv.innerText=`Title: ${newTodo.title.value} \n Description: ${newTodo.description.value} \n Due Date: ${newTodo.dueDate.value} \n Priority: ${newTodo.priority.value}`;
+    location.append(dataDiv);
+    dataDiv.append(expandButton);
+    dataDiv.append(deleteButton);
     disposableInterface.replaceWith("")
-      newTodoButton.disabled = false;
-
+    newTodoButton.disabled = false;
+    deleteButton.addEventListener('click', function (){
+      location.removeChild(dataDiv)
+    });
+    expandButton.addEventListener('click', function(){
+      dataDiv.classList.toggle("expanded");
+    })
   });
-
 });
 
 
